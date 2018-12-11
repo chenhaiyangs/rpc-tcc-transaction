@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>com.github.chenhaiyangs</groupId>
+        <artifactId>rpc-tcc-transaction-example</artifactId>
+        <version>1.0.0</version>
+    </parent>
+
+    <artifactId>rpc-tcc-transaction-example-branchservice-api</artifactId>
+    <version>1.0.0</version>
+
+
+    <dependencies>
+        <!-- 用于简化样板代码的lombok插件 -->
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>1.16.10</version>
+        </dependency>
+        <!-- API要依赖分布式事务的domain包-->
+        <dependency>
+            <artifactId>rpc-tcc-transaction-domain</artifactId>
+            <groupId>com.github.chenhaiyangs</groupId>
+            <version>1.0.0</version>
+        </dependency>
+    </dependencies>
+
+    
+</project>

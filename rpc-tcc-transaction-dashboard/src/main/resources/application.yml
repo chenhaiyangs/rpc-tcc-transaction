@@ -1,0 +1,6 @@
+server:
+  port: 8888
+auth:
+  username: root
+  password: root
+

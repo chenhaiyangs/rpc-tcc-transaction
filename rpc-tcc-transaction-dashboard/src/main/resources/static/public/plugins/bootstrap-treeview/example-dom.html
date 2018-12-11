@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Bootstrap Tree View</title>
+    <link href="/public/css/bootstrap/bootstrap.css" rel="stylesheet">
+    <link href="/public/plugins/bootstrap-treeview/css/bootstrap-treeview.css" rel="stylesheet">
+    <style>
+        .list-group-item .node-treeview:hover{color: #6dba94}
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1>Bootstrap Tree View - DOM Tree</h1>
+    <br/>
+    <div class="row">
+        <div class="col-sm-12">
+            <label for="treeview"></label>
+            <div id="treeview"/>
+        </div>
+    </div>
+</div>
+<script src="/public/js/jquery-3.2.1.min.js"></script>
+<script src="js/bootstrap-treeview.js"></script>
+<script type="text/javascript">
+
+    function buildDomTree() {
+
+        var data = [
+            {
+                text: 'Parent 1',
+                tags: ['2'],
+                nodes: [
+                    {
+                        text: 'Child 1',
+                        tags: ['3'],
+                        nodes: [
+                            {
+                                text: 'Grandchild 1',
+                                tags: ['6']
+                            },
+                            {
+                                text: 'Grandchild 2',
+                                tags: ['3']
+                            }
+                        ]
+                    },
+                    {
+                        text: 'Child 2',
+                        tags: ['3']
+                    }
+                ]
+            },
+            {
+                text: 'Parent 2',
+                tags: ['7']
+            },
+            {
+                text: 'Parent 3',
+                icon: 'glyphicon glyphicon-earphone',
+                href: '#demo',
+                tags: ['11']
+            },
+            {
+                text: 'Parent 4',
+                icon: 'glyphicon glyphicon-cloud-download',
+                href: '/demo.html',
+                selected: true
+            },
+            {
+                text: 'Parent 5',
+                icon: 'glyphicon glyphicon-certificate',
+                href: 'http://www.tesco.com',
+                tags: ['available','0']
+            }
+        ];
+        return data;
+    }
+
+    $(function () {
+
+        var options = {
+            expandIcon: "glyphicon glyphicon-stop",
+            collapseIcon: "glyphicon glyphicon-unchecked",
+            nodeIcon: "glyphicon glyphicon-user",
+            color: "#f0f0f1",
+            backColor: "#32323a",
+            onhoverColor: "#29282f",
+            borderColor: "#32323a",
+            showBorder: false,
+            highlightSelected: true,
+            selectedColor: "#f0f0f1",
+            selectedBackColor: "#17a2b8",
+            bootstrap2: false,
+            levels: 5,
+            data: buildDomTree()
+        };
+
+        $('#treeview').treeview(options);
+    });
+</script>
+</body>

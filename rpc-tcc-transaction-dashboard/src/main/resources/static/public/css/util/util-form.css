@@ -1,0 +1,17 @@
+.ops-global-panel {
+    height: 340px;
+    overflow: auto;
+    text-align: center;
+}
+
+.ops-global-form {
+    padding-bottom: 300px;
+    margin-left: 50px
+}
+
+.ops-global-submit {
+    background-color: white;
+    height: 50px;
+    border: 1px solid lightgray;
+    padding-top: 7px;
+}

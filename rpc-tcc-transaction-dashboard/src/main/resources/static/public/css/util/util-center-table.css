@@ -1,0 +1,96 @@
+.page-return{
+    width:99%;
+    margin:2px auto 5px;
+}
+
+.page-return table thead{
+    font-family: "Apple Color Emoji", Helvetica, Arial, sans-serif;
+    color: grey;
+}
+
+.fixed-table-container{
+    border-radius: 0px;
+}
+
+.page-return table .bs-checkbox{
+    vertical-align: middle;
+    text-align: center;
+}
+/*搜索part*/
+.ops-form{
+    width:99%;
+    margin:0 7px 7px;
+    padding-top: 5px;
+    border-bottom: 1px solid #dddddd;
+}
+.ops-form .page-head{
+    background-color: white;
+    color:black;
+    padding-top: 10px;
+    padding-bottom: 21px;
+}
+.page-head .form-control,.page-head .control-label,.page-head .btn-success{
+    /*margin-top:10px;*/
+}
+.ops-edit{
+    height:37px;
+}
+.ops-edit button{
+    /*float: left;*/
+}
+/*表格part*/
+.ops-table{
+    width:99%;
+    height: 450px;
+    margin:5px 7px 5px;
+    /*overflow: auto;*/
+}
+
+.ops-table-content {
+    height: 400px;
+    overflow: auto;
+}
+
+/*.ops-table table thead,.ops-table table thead tr {*/
+    /*display: inline-table;*/
+    /*!*width:100%;*!*/
+    /*table-layout:fixed;*/
+/*}*/
+
+/*.ops-table table tbody {*/
+    /*display:inline-block;*/
+    /*width:100%;*/
+    /*height: 200px;*/
+    /*overflow-y:auto;*/
+    /*!*border: 1px solid red;*!*/
+/*}*/
+/*.ops-table table tbody tr{*/
+    /*display: inline-table;*/
+    /*table-layout:fixed;*/
+    /*!*width:100%;*!*/
+/*}*/
+/*.ops-table table tbody tr>td{*/
+
+/*}*/
+
+
+    /*去掉表格圆角*/
+.fixed-table-container{
+    border-radius: 0;
+}
+/*checkBox上下左右居中*/
+.ops-table table .bs-checkbox{
+    vertical-align: middle;
+    text-align: center;
+}
+/*.table thead > tr > th,.table tbody > tr,.table > thead > tr > td, .table > tbody > tr > td,.table > tfoot > tr > td,.table > tfoot > tr > th{*/
+    /*background-color: rgb(96,197,146);*/
+/*}*/
+
+
+.bootstrap-table .table:not(.table-condensed),
+.bootstrap-table .table:not(.table-condensed)>tbody>tr>td,
+.bootstrap-table .table:not(.table-condensed)>tbody>tr>th{
+    padding: 0 8px 0 8px;
+    height: 37px;
+}

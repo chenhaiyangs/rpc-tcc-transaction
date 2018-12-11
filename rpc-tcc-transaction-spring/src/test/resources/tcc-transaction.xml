@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:aop="http://www.springframework.org/schema/aop" xmlns:task="http://www.springframework.org/schema/task"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd   http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd http://www.springframework.org/schema/task http://www.springframework.org/schema/task/spring-task.xsd">
+
+    <!-- 开启Spring对@AspectJ风格切面的支持(因为下面用到自定义的TCC补偿切面类) -->
+    <!-- @Aspect注解不能被Spring自动识别并注册为Bean,因此要通过xml的bean配置,或通过@Compenent注解标识其为Spring管理Bean -->
+    <aop:aspectj-autoproxy proxy-target-class="true"/>
+    <!-- 启用定时任务注解 -->
+    <task:annotation-driven/>
+    <!-- 扫描tcc-transaction框架包 -->
+    <context:component-scan base-package="com.chenhaiyang.tcc.transaction.spring"/>
+
+    <!-- 事务序列化工具 -->
+    <bean id="hessianSeralizer" class="com.chenhaiyang.tcc.transaction.core.serializer.hessian.HessianSerializer"/>
+
+    <!-- TCC 业务活动日志（事务日志）的jdbc数据源 -->
+    <bean id="tccDataSource" class="com.alibaba.druid.pool.DruidDataSource" init-method="init" destroy-method="clone">
+        <!-- 基本属性driverClassName、 url、user、password -->
+        <property name="driverClassName" value="com.mysql.jdbc.Driver" />
+        <property name="url" value="jdbc:mysql://localhost:3306/tcc-transaction?useUnicode=true" />
+        <property name="username" value="root" />
+        <property name="password" value="root" />
+
+        <!-- 配置初始化大小、最小、最大 -->
+        <!-- 通常来说，只需要修改initialSize、minIdle、maxActive -->
+        <!-- 初始化时建立物理连接的个数，缺省值为0 -->
+        <property name="initialSize" value="5" />
+        <!-- 最小连接池数量 -->
+        <property name="minIdle" value="10" />
+        <!-- 最大连接池数量，缺省值为8 -->
+        <property name="maxActive" value="20" />
+
+        <!-- 获取连接时最大等待时间，单位毫秒。配置了maxWait之后，缺省启用公平锁，并发效率会有所下降，如果需要可以通过配置useUnfairLock属性为true使用非公平锁。 -->
+        <property name="maxWait" value="1000" />
+    </bean>
+
+    <!-- 事务持久化介质,自选,这里以jdbc为例 -->
+    <!--<bean id="transactionStorage" class="com.chenhaiyang.tcc.transaction.core.storage.jdbc.JdbcTransactionStorage">-->
+    <!--&lt;!&ndash; 序列化方式 &ndash;&gt;-->
+    <!--<constructor-arg ref="hessianSeralizer"/>-->
+    <!--&lt;!&ndash; jdbc数据源 &ndash;&gt;-->
+    <!--<property name="dataSource" ref="tccDataSource"/>-->
+    <!--&lt;!&ndash; 数据库表名后缀 &ndash;&gt;-->
+    <!--<property name="tbSuffix" value="_test"/>-->
+    <!--</bean>-->
+
+    <!-- 事务持久化介质，自选，这里以redis为例 -->
+    <bean id="jedisPool" class="redis.clients.jedis.JedisPool">
+        <constructor-arg value="127.0.0.1"/>
+        <constructor-arg value="6379"/>
+    </bean>
+    <bean id="transactionStorage" class="com.chenhaiyang.tcc.transaction.core.storage.redis.RedisTransactionStorage">
+        <!-- 序列化方式 -->
+        <constructor-arg ref="hessianSeralizer"/>
+        <!-- 分布式锁超时时间（upadate原子性使用分布式锁实现） -->
+        <property name="lockTimeout" value="2000"/>
+        <!-- jedis pool -->
+        <property name="jedisPool" ref="jedisPool"/>
+    </bean>
+    <!-- 事务持久化介质，自选，这里以zookeeper为例 -->
+    <!--<bean id="transactionStorage" class="com.chenhaiyang.tcc.transaction.core.storage.zookeeper.ZookeeperTransactionStorage">-->
+    <!--&lt;!&ndash; 序列化方式 &ndash;&gt;-->
+    <!--<constructor-arg ref="hessianSeralizer"/>-->
+    <!--&lt;!&ndash; zookeeper连接地址 &ndash;&gt;-->
+    <!--<constructor-arg value="127.0.0.1:2181"/>-->
+    <!--</bean>-->
+
+
+    <!-- 异步线程池 -->
+    <bean id="aysncThreadPool" class="com.chenhaiyang.tcc.transaction.core.aysnc.ThreadPoolTransactionAysncExecutor">
+        <!-- 线程池保持最小线程数，低于该值，线程不会回收 -->
+        <constructor-arg index="0" value="100" />
+        <!-- 线程池保持的最大线程数，大于上值，小于该值，线程回收 -->
+        <constructor-arg index="1" value="250"/>
+        <!-- 空闲线程空闲多久回收 -->
+        <constructor-arg index="2" value="120"/>
+    </bean>
+
+    <!-- TCC事务配置器 -->
+    <bean id="transactionConfiguration" class="com.chenhaiyang.tcc.transaction.core.configuration.TccTransactionConfiguration">
+        <!-- 事务存储器 -->
+        <property name="transactionStorage" ref="transactionStorage"/>
+        <!-- 当需要事务异步提交或者回滚时的异步线程池 -->
+        <property name="transactionAysncExecutor" ref="aysncThreadPool"/>
+        <!-- 事务所属的业务域 -->
+        <property name="domain" value="test"/>
+    </bean>
+</beans>

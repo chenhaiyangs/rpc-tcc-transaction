@@ -1,0 +1,47 @@
+#treeview ul.list-group li.list-group-item:first-child, #treeview ul.list-group li.list-group-item:last-child {
+    border-radius: 0px;
+}
+
+.fixed-table-container thead th:first-child:not([data-not-first-th]) {
+    border-radius: 0px;
+}
+
+.wrapper {
+    margin: 1px 0 0 0;
+    padding: 0;
+    height: 700px;
+    overflow: hidden;
+    background-color: white;
+}
+
+.body-content {
+    min-height: 0px;
+}
+
+.sidebar-left {
+    max-height: 700px;
+    overflow: auto;
+}
+
+.ops-welcome {
+
+}
+
+.ops-homepage-body {
+    overflow: hidden;
+}
+
+.ops-homepage-tab > .nav-tabs {
+    margin-top: 6px;
+    padding-left: 8px;
+    height: 36px;
+}
+
+.ops-homepage-tab > .nav-tabs > li > a {
+    border-radius: 0;
+    height: 36px;
+}
+
+.ops-homepage-tab > .nav > li > a {
+    padding: 7px 15px;
+}

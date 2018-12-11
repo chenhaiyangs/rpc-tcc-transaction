@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>com.github.chenhaiyangs</groupId>
+        <artifactId>rpc-tcc-transaction-example</artifactId>
+        <version>1.0.0</version>
+    </parent>
+    <packaging>jar</packaging>
+    <artifactId>rpc-tcc-transaction-example-branchservice</artifactId>
+    <version>1.0.0</version>
+
+    <dependencies>
+        <!-- dubbo提供者依赖API -->
+        <dependency>
+            <groupId>com.github.chenhaiyangs</groupId>
+            <artifactId>rpc-tcc-transaction-example-branchservice-api</artifactId>
+            <version>1.0.0</version>
+        </dependency>
+        <!-- 依赖tcc分布式事务的实现包 -->
+        <dependency>
+            <groupId>com.github.chenhaiyangs</groupId>
+            <artifactId>rpc-tcc-transaction-spring</artifactId>
+            <version>1.0.0</version>
+        </dependency>
+        <!-- dubbo服务依赖 -->
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>dubbo</artifactId>
+            <version>2.6.3</version>
+        </dependency>
+        <!-- 数据库连接池 sope:provided 仅测试时使用-->
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>druid</artifactId>
+            <version>1.0.12</version>
+            <!-- 移除log4j的打印框架,否则，log 4j日志不生效 -->
+            <exclusions>
+                <exclusion>
+                    <artifactId>slf4j-log4j12</artifactId>
+                    <groupId>org.slf4j</groupId>
+                </exclusion>
+                <exclusion>
+                    <artifactId>log4j</artifactId>
+                    <groupId>log4j</groupId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <version>5.1.18</version>
+        </dependency>
+    </dependencies>
+    
+</project>
