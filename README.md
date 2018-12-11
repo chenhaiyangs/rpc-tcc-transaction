@@ -159,7 +159,7 @@ rpc-tcc-transaction
     tcc-transaction.xml文件配置详解后续解释
     
 ## [tcc-transaction.xml的具体可配置项与可扩展点](./doc/transactionxml.md)
-## FAG
+## FAQ
 #### 为什么我下载代码以后，没有找到get/set／toString 方法
 因为框架使用了Lombok包，它是在编译的时期，自动生成get／set／toString等方法，并不影响运行，如果觉得提示错误难受，请自行下载lombok包插件。
 
