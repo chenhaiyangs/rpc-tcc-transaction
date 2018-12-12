@@ -161,6 +161,9 @@ public class ZookeeperTransactionStorage extends AbstractStorage{
         return String.format("%s/%s/%s",TCC_ROOT,transaction.getDomain(), new String(xid.getGlobalTransactionId())+""+new String(xid.getBranchQualifier()));
     }
     private String getDomainPath(String domainStr) {
+        if(domainStr==null ||domainStr.length()==0){
+            return String.format("%s",TCC_ROOT);
+        }
         return String.format("%s/%s",TCC_ROOT,domainStr);
     }
     private String getChildPath(String parent,String child) {
