@@ -11,6 +11,40 @@
 
     <artifactId>rpc-tcc-transaction-domain</artifactId>
     <description>tcc分布式事务的领域模型</description>
+    <url>https://github.com/chenhaiyangs/rpc-tcc-transaction.git</url>
+    <distributionManagement>
+        <snapshotRepository>
+            <id>ossrh</id>
+            <url>https://oss.sonatype.org/content/repositories/snapshots</url>
+        </snapshotRepository>
+        <repository>
+            <id>ossrh</id>
+            <name>Maven Central Staging Repository</name>
+            <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+        </repository>
+    </distributionManagement>
+    <licenses>
+        <license>
+            <name>The Apache License, Version 2.0</name>
+            <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+        </license>
+    </licenses>
+    <developers>
+        <developer>
+            <name>chenhaiyang</name>
+            <email>chenhy_hebei@126.com</email>
+            <roles>
+                <role>developer</role>
+            </roles>
+            <timezone>+8</timezone>
+        </developer>
+    </developers>
+    <scm>
+        <connection>scm:git:https://github.com/chenhaiyangs/rpc-tcc-transaction.git</connection>
+        <developerConnection>scm:git:https://github.com/chenhaiyangs/rpc-tcc-transaction.git</developerConnection>
+        <url>https://github.com/chenhaiyangs/rpc-tcc-transaction.git</url>
+        <tag>v${project.version}</tag>
+    </scm>
 
     <properties>
         <org-projectlombok-version>1.16.10</org-projectlombok-version>
@@ -25,7 +59,7 @@
         </dependency>
     </dependencies>
 
-    <!-- 插件 -->
+    <!-- 中央仓库插件 -->
     <build>
         <plugins>
             <plugin>
@@ -36,6 +70,19 @@
                     <source>1.8</source>
                     <target>1.8</target>
                 </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-source-plugin</artifactId>
+                <version>2.2.1</version>
+                <executions>
+                    <execution>
+                        <id>attach-sources</id>
+                        <goals>
+                            <goal>jar-no-fork</goal>
+                        </goals>
+                    </execution>
+                </executions>
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -50,7 +97,26 @@
                     </execution>
                 </executions>
             </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-gpg-plugin</artifactId>
+                <version>1.6</version>
+                <executions>
+                    <execution>
+                        <id>sign-artifacts</id>
+                        <phase>verify</phase>
+                        <goals>
+                            <goal>sign</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
         </plugins>
     </build>
+    <profiles>
+        <profile>
+            <id>release</id>
+        </profile>
+    </profiles>
 
 </project>

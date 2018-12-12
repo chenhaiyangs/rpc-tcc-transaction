@@ -10,58 +10,93 @@
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>rpc-tcc-transaction-spring</artifactId>
+    <version>1.0.0</version>
     <description>tcc事务在spring层面的支持</description>
+    <url>https://github.com/chenhaiyangs/rpc-tcc-transaction.git</url>
+    <distributionManagement>
+        <snapshotRepository>
+            <id>ossrh</id>
+            <url>https://oss.sonatype.org/content/repositories/snapshots</url>
+        </snapshotRepository>
+        <repository>
+            <id>ossrh</id>
+            <name>Maven Central Staging Repository</name>
+            <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+        </repository>
+    </distributionManagement>
+    <licenses>
+        <license>
+            <name>The Apache License, Version 2.0</name>
+            <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+        </license>
+    </licenses>
+    <developers>
+        <developer>
+            <name>chenhaiyang</name>
+            <email>chenhy_hebei@126.com</email>
+            <roles>
+                <role>developer</role>
+            </roles>
+            <timezone>+8</timezone>
+        </developer>
+    </developers>
+    <scm>
+        <connection>scm:git:https://github.com/chenhaiyangs/rpc-tcc-transaction.git</connection>
+        <developerConnection>scm:git:https://github.com/chenhaiyangs/rpc-tcc-transaction.git</developerConnection>
+        <url>https://github.com/chenhaiyangs/rpc-tcc-transaction.git</url>
+        <tag>v${project.version}</tag>
+    </scm>
+
+    <properties>
+        <rpc-tcc-transaction-core-version>1.0.0</rpc-tcc-transaction-core-version>
+        <spring-version>4.3.3.RELEASE</spring-version>
+        <asjectj-version>1.8.10</asjectj-version>
+        <quertz-version>2.2.0</quertz-version>
+    </properties>
 
     <dependencies>
         <!-- 依赖rpc-core -->
         <dependency>
             <artifactId>rpc-tcc-transaction-core</artifactId>
             <groupId>com.github.chenhaiyangs</groupId>
-            <version>1.0.0</version>
-        </dependency>
-        <!-- 单元测试集成 -->
-        <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-            <version>4.10</version>
-            <scope>test</scope>
+            <version>${rpc-tcc-transaction-core-version}</version>
         </dependency>
         <!--config-context -->
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-context</artifactId>
-            <version>4.3.3.RELEASE</version>
+            <version>${spring-version}</version>
         </dependency>
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-aop</artifactId>
-            <version>4.3.3.RELEASE</version>
+            <version>${spring-version}</version>
         </dependency>
         <dependency>
             <groupId>org.aspectj</groupId>
             <artifactId>aspectjrt</artifactId>
-            <version>1.8.10</version>
+            <version>${asjectj-version}</version>
         </dependency>
         <dependency>
             <groupId>org.aspectj</groupId>
             <artifactId>aspectjweaver</artifactId>
-            <version>1.8.10</version>
+            <version>${asjectj-version}</version>
         </dependency>
         <!-- quartz定时任务支持 -->
         <dependency>
             <groupId>org.quartz-scheduler</groupId>
             <artifactId>quartz</artifactId>
-            <version>2.2.0</version>
+            <version>${quertz-version}</version>
         </dependency>
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-context-support</artifactId>
-            <version>4.3.3.RELEASE</version>
+            <version>${spring-version}</version>
         </dependency>
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-tx</artifactId>
-            <version>4.3.3.RELEASE</version>
+            <version>${spring-version}</version>
         </dependency>
         <!-- 数据库连接池 sope:provided 仅测试时使用-->
         <dependency>
@@ -87,5 +122,72 @@
             <version>5.1.18</version>
             <scope>provided</scope>
         </dependency>
+        <!-- 单元测试集成 -->
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.10</version>
+            <scope>test</scope>
+        </dependency>
     </dependencies>
+
+    <!-- 中央仓库插件 -->
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.1</version>
+                <configuration>
+                    <source>1.8</source>
+                    <target>1.8</target>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-source-plugin</artifactId>
+                <version>2.2.1</version>
+                <executions>
+                    <execution>
+                        <id>attach-sources</id>
+                        <goals>
+                            <goal>jar-no-fork</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-javadoc-plugin</artifactId>
+                <version>2.9.1</version>
+                <executions>
+                    <execution>
+                        <id>attach-javadocs</id>
+                        <goals>
+                            <goal>jar</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-gpg-plugin</artifactId>
+                <version>1.6</version>
+                <executions>
+                    <execution>
+                        <id>sign-artifacts</id>
+                        <phase>verify</phase>
+                        <goals>
+                            <goal>sign</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+    <profiles>
+        <profile>
+            <id>release</id>
+        </profile>
+    </profiles>
 </project>
