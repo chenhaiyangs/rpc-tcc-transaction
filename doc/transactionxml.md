@@ -223,7 +223,7 @@ jdbc的transactionStorage中需要配置tbSuffix，即事务表的后缀。建�
 ```
 关键配置解析：
 ##### domain 
-    事务的业务域，必须配置。一个try-confirm-cancel单元配置一个业务域
+    事务的业务域，必须配置。一个服务和相关接口可以设置一个业务域
 ##### transactionAysncExecutor 
     异步线程池引用，如果需要事务异步提交或者回滚
 ##### transactionStorage
