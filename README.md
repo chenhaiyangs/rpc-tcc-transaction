@@ -148,7 +148,7 @@ rpc-tcc-transaction
         ......
     }
    /**
-    * confirm函数
+    * cancel函数
     */
     public String rootcancelMethod(RootRequest msg){
         ......
