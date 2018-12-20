@@ -1,6 +1,7 @@
 package com.chenhaiyang.tcc.transaction.core.configuration;
 
 import com.chenhaiyang.tcc.transaction.api.*;
+import com.chenhaiyang.tcc.transaction.core.aysnc.ThreadPoolTransactionAysncExecutor;
 import com.chenhaiyang.tcc.transaction.core.manager.DefaultTransactionManager;
 import com.chenhaiyang.tcc.transaction.core.recover.DefaultTransactionRecoverConfig;
 import lombok.Setter;
@@ -29,7 +30,7 @@ public class TccTransactionConfiguration implements TransactionConfiguration{
      * 事务异步执行器
      */
     @Setter
-    private TransactionAysncExecutor transactionAysncExecutor;
+    private TransactionAysncExecutor transactionAysncExecutor =new ThreadPoolTransactionAysncExecutor();
     /**
      * 事务的业务域
      */

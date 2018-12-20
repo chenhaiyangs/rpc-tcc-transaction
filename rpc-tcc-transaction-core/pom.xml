@@ -10,7 +10,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>rpc-tcc-transaction-core</artifactId>
-    <version>1.0.0</version>
+    <version>1.1.0</version>
     <description>tcc分布式事务核心实现</description>
     <url>https://github.com/chenhaiyangs/rpc-tcc-transaction.git</url>
     <distributionManagement>

@@ -10,7 +10,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>rpc-tcc-transaction-spring</artifactId>
-    <version>1.0.0</version>
+    <version>1.1.0</version>
     <description>tcc事务在spring层面的支持</description>
     <url>https://github.com/chenhaiyangs/rpc-tcc-transaction.git</url>
     <distributionManagement>
@@ -48,7 +48,7 @@
     </scm>
 
     <properties>
-        <rpc-tcc-transaction-core-version>1.0.0</rpc-tcc-transaction-core-version>
+        <rpc-tcc-transaction-core-version>1.1.0</rpc-tcc-transaction-core-version>
         <spring-version>4.3.3.RELEASE</spring-version>
         <asjectj-version>1.8.10</asjectj-version>
         <quertz-version>2.2.0</quertz-version>

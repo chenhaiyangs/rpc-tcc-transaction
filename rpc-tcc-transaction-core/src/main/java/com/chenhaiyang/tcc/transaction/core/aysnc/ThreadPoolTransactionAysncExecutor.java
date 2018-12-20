@@ -1,6 +1,8 @@
 package com.chenhaiyang.tcc.transaction.core.aysnc;
 
 import com.chenhaiyang.tcc.transaction.api.TransactionAysncExecutor;
+import lombok.NoArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 
 import java.util.concurrent.SynchronousQueue;
 import java.util.concurrent.ThreadFactory;
@@ -12,6 +14,8 @@ import java.util.concurrent.atomic.AtomicLong;
  * 线程池提交者
  * @author chenhaiyang
  */
+@NoArgsConstructor
+@Slf4j
 public class ThreadPoolTransactionAysncExecutor implements TransactionAysncExecutor{
 
     private ThreadPoolExecutor pools = null;
@@ -36,6 +40,8 @@ public class ThreadPoolTransactionAysncExecutor implements TransactionAysncExecu
         if(pools!=null) {
             pools.submit(task);
         }else {
+            //并没有配置线程池，因此无法异步执行，但是如果调用，则实际上在当前线程执行，这里打印一下警告
+            log.warn("threadPoolExecutor is null, so execuse not by runnable!");
             task.run();
         }
     }
