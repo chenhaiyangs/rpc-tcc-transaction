@@ -74,7 +74,7 @@ rpc-tcc-transaction
         <dependency>
             <artifactId>rpc-tcc-transaction-domain</artifactId>
             <groupId>com.github.chenhaiyangs</groupId>
-            <version>1.0.0</version>
+            <version>1.1.0</version>
         </dependency>
 ```
 在API的定义里需要保证一个入参为TransactionContext,如：
@@ -91,7 +91,7 @@ rpc-tcc-transaction
         <dependency>
             <groupId>com.github.chenhaiyangs</groupId>
             <artifactId>rpc-tcc-transaction-spring</artifactId>
-            <version>1.1.0</version>
+            <version>1.2.0</version>
         </dependency>
 ```
 三,分支事务角色的RPC接口实现的try方法需要添加@TccTransaction注解，指定confirm和cancel方法的函数名称。三个函数入参必须完全一样。
@@ -127,7 +127,7 @@ rpc-tcc-transaction
         <dependency>
             <groupId>com.github.chenhaiyangs</groupId>
             <artifactId>rpc-tcc-transaction-spring</artifactId>
-            <version>1.1.0</version>
+            <version>1.2.0</version>
         </dependency>
 ```
 五,主事务角色的业务实现的try方法需要添加@TccTransaction注解，指定confirm和cancel方法的函数名称。三个函数入参必须完全一样。也可以指定是否异步执行comfirm或者cancel方法。

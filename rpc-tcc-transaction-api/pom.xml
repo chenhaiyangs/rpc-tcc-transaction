@@ -2,17 +2,17 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-    <parent>
-        <artifactId>rpc-tcc-transaction</artifactId>
-        <groupId>com.github.chenhaiyangs</groupId>
-        <version>1.0.0</version>
-    </parent>
+
     <modelVersion>4.0.0</modelVersion>
-    <version>1.0.0</version>
 
     <artifactId>rpc-tcc-transaction-api</artifactId>
+    <groupId>com.github.chenhaiyangs</groupId>
+    <version>1.1.0</version>
+
+    <name>rpc-tcc-transaction-api</name>
     <description>tcc-分布式事务框架的一些通用的组件的接口定义</description>
     <url>https://github.com/chenhaiyangs/rpc-tcc-transaction.git</url>
+
     <distributionManagement>
         <snapshotRepository>
             <id>ossrh</id>
@@ -48,7 +48,7 @@
     </scm>
 
     <properties>
-        <tcc-domain-version>1.0.0</tcc-domain-version>
+        <tcc-domain-version>1.1.0</tcc-domain-version>
     </properties>
 
     <dependencies>

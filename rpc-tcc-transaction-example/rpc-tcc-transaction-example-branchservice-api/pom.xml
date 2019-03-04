@@ -25,7 +25,7 @@
         <dependency>
             <artifactId>rpc-tcc-transaction-domain</artifactId>
             <groupId>com.github.chenhaiyangs</groupId>
-            <version>1.0.0</version>
+            <version>1.1.0</version>
         </dependency>
     </dependencies>
 

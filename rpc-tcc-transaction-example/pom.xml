@@ -2,12 +2,12 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-    <parent>
-        <artifactId>rpc-tcc-transaction</artifactId>
-        <groupId>com.github.chenhaiyangs</groupId>
-        <version>1.0.0</version>
-    </parent>
+
     <modelVersion>4.0.0</modelVersion>
+    <groupId>com.github.chenhaiyangs</groupId>
+    <artifactId>rpc-tcc-transaction-example</artifactId>
+    <version>1.0.0</version>
+
     <packaging>pom</packaging>
     <description>
         rpc分布式事务的Demo例子，这里以dubbo框架为例，启动两个dubbo服务，分别是主事务和分支事务角色。
@@ -16,7 +16,6 @@
         rpc-tcc-transaction-example-branchservice 是分支事务的业务实现
         主事务rootservice调用分支事务
     </description>
-    <artifactId>rpc-tcc-transaction-example</artifactId>
 
     <modules>
         <module>rpc-tcc-transaction-example-rootservice</module>

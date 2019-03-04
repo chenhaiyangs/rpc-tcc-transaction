@@ -7,18 +7,11 @@
     <groupId>com.github.chenhaiyangs</groupId>
     <artifactId>rpc-tcc-transaction</artifactId>
     <packaging>pom</packaging>
-    <version>1.0.0</version>
+    <version>1.1.0</version>
+
     <name>rpc-tcc-transaction</name>
     <description>tcc分布式事务框架，实现与具体RPC框架无关的分布式事务功能的支持</description>
     <url>https://github.com/chenhaiyangs/rpc-tcc-transaction.git</url>
-    <modules>
-        <module>rpc-tcc-transaction-domain</module>
-        <module>rpc-tcc-transaction-api</module>
-        <module>rpc-tcc-transaction-core</module>
-        <module>rpc-tcc-transaction-spring</module>
-        <module>rpc-tcc-transaction-dashboard</module>
-        <module>rpc-tcc-transaction-example</module>
-    </modules>
 
     <distributionManagement>
         <snapshotRepository>
